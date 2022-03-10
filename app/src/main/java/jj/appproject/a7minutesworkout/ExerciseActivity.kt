@@ -16,7 +16,7 @@ class ExerciseActivity : AppCompatActivity() {
 
         setSupportActionBar(binding?.toolbarExercise)
 
-        if(supportActionBar != null){
+        if(supportActionBar != null){ 
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
