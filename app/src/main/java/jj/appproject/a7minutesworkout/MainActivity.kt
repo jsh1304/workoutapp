@@ -1,5 +1,6 @@
 package jj.appproject.a7minutesworkout
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
@@ -16,11 +17,11 @@ class MainActivity : AppCompatActivity() {
 
         //val flStartButton : FrameLayout = findViewById(R.id.flstart)
         binding?.flstart?.setOnClickListener{
-            Toast.makeText(
-                this@MainActivity,
-                "운동시작!!",
-                Toast.LENGTH_SHORT
-            ).show()
+            // ExcerciseActivity로 넘어가는 방법
+            val intent = Intent(this, ExerciseActivity::class.java)
+            // https://stackoverflow.com/questions/68686142/what-is-the-meaning-of-class-java
+            startActivity(intent)
+
 
         }
     }
