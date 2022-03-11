@@ -63,7 +63,7 @@ class ExerciseActivity : AppCompatActivity() {
         }.start()
     }
 
-    public override fun onDestroy() { // restTimer가 null인지 확인
+    public override fun onDestroy() { // restTimer가 null인지 확인 
         if(restTimer != null){
             restTimer?.cancel()
             restProgress = 0
