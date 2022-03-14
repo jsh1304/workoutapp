@@ -15,6 +15,9 @@ class ExerciseActivity : AppCompatActivity() {
     private var exerciseTimer: CountDownTimer? = null // 운동 시간
     private var exerciseProgress = 0
 
+    private var exerciseList: ArrayList<ExerciseModel>? = null
+    private var currentExercisePosition = -1
+
     private var binding: ActivityExerciseBinding? = null
     // ActivityMainBinding이 아니라 ActivityExerciseBinding
 
@@ -26,7 +29,7 @@ class ExerciseActivity : AppCompatActivity() {
 
         setSupportActionBar(binding?.toolbarExercise)
 
-        if(supportActionBar != null){ 
+        if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
@@ -34,11 +37,19 @@ class ExerciseActivity : AppCompatActivity() {
             onBackPressed() // 뒤로가기 버튼 클릭
         }
 
+        exerciseList = Constants.defaultExerciseList()
 
         setupRestView()
     }
 
     private fun setupRestView(){
+
+        binding?.flRestview?.visibility = View.VISIBLE
+        binding?.tvTitle?.visibility = View.VISIBLE
+        binding?.tvExerciseName?.visibility = View.INVISIBLE
+        binding?.flExerciseView?.visibility = View.INVISIBLE
+        binding?.ivImage?.visibility = View.INVISIBLE
+
         if(restTimer != null){
             restTimer!!.cancel()
             restProgress = 0
@@ -57,21 +68,28 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                 setupExerciseView() // 10초 끝 -> 운동 시작
+                currentExercisePosition++
+                setupExerciseView() // 10초 끝 -> 운동 시작
             }
 
         }.start()
     }
 
     private fun setupExerciseView(){
-        binding?.flProgressBar?.visibility = View.INVISIBLE
-        binding?.tvTitle?.text = "운동 이름"
+
+        binding?.flRestview?.visibility = View.INVISIBLE
+        binding?.tvTitle?.visibility = View.INVISIBLE
+        binding?.tvExerciseName?.visibility = View.VISIBLE
         binding?.flExerciseView?.visibility = View.VISIBLE
+        binding?.ivImage?.visibility = View.VISIBLE
 
         if(exerciseTimer != null){
             exerciseTimer?.cancel()
             exerciseProgress = 0
         }
+
+        binding?.ivImage?.setImageResource(exerciseList!![currentExercisePosition].getImage())
+        binding?.tvExerciseName?.text = exerciseList!![currentExercisePosition].getName()
 
         setExerciseProgressBar()
     }
@@ -88,16 +106,20 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                Toast.makeText(
-                    this@ExerciseActivity,
-                    "30초 완료되었습니다.\n다음 운동을 준비해주세요.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                if (currentExercisePosition < exerciseList?.size!! - 1) {
+                    setupRestView()
+                } else {
+                    Toast.makeText(
+                        this@ExerciseActivity,
+                        "7분 운동을 완료하였습니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }.start()
     }
 
-    public override fun onDestroy() { // restTimer가 null인지 확인 
+    public override fun onDestroy() { // restTimer가 null인지 확인
         if(restTimer != null){
             restTimer?.cancel()
             restProgress = 0
