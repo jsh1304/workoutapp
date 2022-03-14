@@ -117,6 +117,6 @@ object Constants {
                 false)
         exerciseList.add(stepUp)
 
-        return exerciseList
+        return exerciseList 
     }
 }
