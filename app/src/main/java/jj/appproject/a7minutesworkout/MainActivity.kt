@@ -21,14 +21,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ExerciseActivity::class.java)
             // https://stackoverflow.com/questions/68686142/what-is-the-meaning-of-class-java
             startActivity(intent)
-
-
+        }
+        binding?.flBMI?.setOnClickListener {
+            val intent = Intent(this, BMIActivity::class.java)
+            startActivity(intent)
         }
     }
 
     override fun onDestroy(){ // memory 누락 방지 위해 binding을 해제하는 방법
         super.onDestroy()
-
         binding = null
     }
 }
