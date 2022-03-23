@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, BMIActivity::class.java)
             startActivity(intent)
         }
+
+        binding?.flHistory?.setOnClickListener {
+            val intent = Intent(this,HistoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy(){ // memory 누락 방지 위해 binding을 해제하는 방법
