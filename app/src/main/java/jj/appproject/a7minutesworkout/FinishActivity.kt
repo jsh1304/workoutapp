@@ -43,7 +43,7 @@ class FinishActivity : AppCompatActivity() {
         val dateTime = c.time // 현재 날짜와 시간
         Log.e("날짜 :", "" + dateTime) //로그 안을 출력
 
-        val sdf = SimpleDateFormat("yyyy MMM dd HH:mm:ss", Locale.getDefault())
+        val sdf = SimpleDateFormat("yyyy MM dd HH:mm:ss", Locale.KOREA)
         val date = sdf.format(dateTime)
         Log.e("날짜 형식 : ", "" + date)
 
