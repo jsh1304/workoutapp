@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">7MinutesWorkout</string>
     <string name="image">start image</string>
+    <string name="app_ad_id">ca-app-pub-5397057246147610~6773831648</string>
+    <string name="banner_id">ca-app-pub-5397057246147610/5354321650</string>
+    <string name="banner_id_test">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

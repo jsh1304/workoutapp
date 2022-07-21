@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Toast
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import jj.appproject.a7minutesworkout.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root) // view binding 접근 방식으로 작성
+
+        //Admob Initialize
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        binding?.adView?.loadAd(adRequest)
 
         //val flStartButton : FrameLayout = findViewById(R.id.flstart)
         binding?.flstart?.setOnClickListener{

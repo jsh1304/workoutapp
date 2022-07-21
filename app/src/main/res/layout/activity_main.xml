@@ -7,6 +7,21 @@
     android:padding="@dimen/main_screen_main_layout_padding"
     tools:context=".MainActivity">
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/adView"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_id_test"
+        app:layout_constraintBottom_toTopOf="@+id/myImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <ImageView
         android:id="@+id/myImageView"
         app:layout_constraintTop_toTopOf="parent"
@@ -14,7 +29,7 @@
         android:contentDescription="@string/image"
         android:src="@drawable/img_main_page"
         android:layout_width="match_parent"
-        android:layout_height="220dp" />
+        android:layout_height="120dp" />
 
     <FrameLayout
         android:id="@+id/flstart"
